@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # directories
-SOURCE="ffmpeg-2.5.3"
+SOURCE="ffmpeg-2.3"
 FAT="FFmpeg-iOS"
 
 SCRATCH="scratch"
@@ -14,7 +14,34 @@ THIN=`pwd`/"thin"
 #FDK_AAC=`pwd`/fdk-aac/fdk-aac-ios
 
 CONFIGURE_FLAGS="--enable-cross-compile --disable-debug --disable-programs \
-                 --disable-doc --enable-pic"
+                 --disable-everything \
+                 --disable-doc \
+                 --disable-ffplay \
+                 --disable-ffserver \
+                 --disable-ffmpeg \
+                 --disable-ffprobe \
+                 --disable-devices \
+                 --disable-avdevice \
+                 --disable-debug \
+                 --disable-armv5te \
+                 --disable-armv6 \
+                 --disable-armv6t2 \
+                 --enable-neon \
+                 --enable-asm \
+                 --enable-small \
+                 --enable-nonfree \
+                 --enable-version3 \
+                 --enable-gpl \
+                 --enable-avresample \
+                 --enable-swresample \
+                 --enable-protocols \
+                 --enable-demuxers \
+                 --disable-demuxer=sbg \
+                 --enable-parsers \
+                 --enable-decoders \
+                 --enable-hwaccels \
+                 --enable-zlib \
+                 --enable-pic"
 
 if [ "$X264" ]
 then
@@ -29,12 +56,12 @@ fi
 # avresample
 #CONFIGURE_FLAGS="$CONFIGURE_FLAGS --enable-avresample"
 
-ARCHS="arm64 armv7s armv7 x86_64 i386"
+ARCHS="arm64 armv7s armv7 i386"
 
 COMPILE="y"
 LIPO="y"
 
-DEPLOYMENT_TARGET="6.0"
+DEPLOYMENT_TARGET="6.1"
 
 if [ "$*" ]
 then
