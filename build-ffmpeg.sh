@@ -13,7 +13,7 @@ THIN=`pwd`/"thin"
 
 #FDK_AAC=`pwd`/fdk-aac/fdk-aac-ios
 
-CONFIGURE_FLAGS="--enable-cross-compile --disable-debug --disable-programs \
+CONFIGURE_FLAGS="--enable-cross-compile --disable-programs \
                  --disable-everything \
                  --disable-doc \
                  --disable-ffplay \
@@ -22,7 +22,7 @@ CONFIGURE_FLAGS="--enable-cross-compile --disable-debug --disable-programs \
                  --disable-ffprobe \
                  --disable-devices \
                  --disable-avdevice \
-                 --disable-debug \
+                 --enable-debug \
                  --disable-armv5te \
                  --disable-armv6 \
                  --disable-armv6t2 \
@@ -41,7 +41,13 @@ CONFIGURE_FLAGS="--enable-cross-compile --disable-debug --disable-programs \
                  --enable-decoders \
                  --enable-hwaccels \
                  --enable-zlib \
-                 --enable-pic"
+                 --enable-pic \
+                 --enable-openssl \
+                 --enable-filter=abuffer \
+                 --enable-filter=volume \
+                 --enable-filter=aformat \
+                 --enable-filter=abuffersink \
+                 --enable-filter=aresample"
 
 if [ "$X264" ]
 then
@@ -150,9 +156,9 @@ then
 		    --arch=$ARCH \
 		    --cc="$CC" \
 		    $CONFIGURE_FLAGS \
-		    --extra-cflags="$CFLAGS" \
+		    --extra-cflags="$CFLAGS -I/Users/momo/Desktop/Skywatch_iOS_App/openssl_1.0.1g/include" \
 		    --extra-cxxflags="$CXXFLAGS" \
-		    --extra-ldflags="$LDFLAGS" \
+		    --extra-ldflags="$LDFLAGS -L/Users/momo/Desktop/Skywatch_iOS_App/openssl_1.0.1g/lib" \
 		    --prefix="$THIN/$ARCH" \
 		|| exit 1
 
